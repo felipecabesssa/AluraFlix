@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aluraflix.apibackend.entities.Video;
 import com.aluraflix.apibackend.repositories.VideoRepository;
+import com.aluraflix.apibackend.resources.exceptions.ObjectNotFoundException;
 
 @RestController
 @RequestMapping
@@ -29,7 +30,12 @@ public class VideoResource {
 	
 	@GetMapping("/videos/{id}")
 	public Video listaUnicoVideo(@PathVariable(value="id") long id){
-		return videoRepository.findById(id);
+		Video obj = videoRepository.findById(id);
+		if(obj == null) {
+			throw new ObjectNotFoundException("Video não encontrado! Id: " + id
+					+ ", Tipo: " + Video.class.getName());
+		}
+		return obj;
 	}
 	
 	@PostMapping("/videos")
