@@ -16,7 +16,8 @@ public class Video implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
+	private Long id;
+	
 	private String titulo;
 	private String descricao;
 	private String url;
@@ -25,18 +26,18 @@ public class Video implements Serializable{
 	}
 
 	public Video(Long id, String titulo, String descricao, String url) {
-		Id = id;
+		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.url = url;
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -65,7 +66,7 @@ public class Video implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -77,9 +78,6 @@ public class Video implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Video other = (Video) obj;
-		return Objects.equals(Id, other.Id);
+		return Objects.equals(id, other.id);
 	}
-	
-	
-
 }
